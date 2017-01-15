@@ -35,8 +35,7 @@ namespace AcUdpCommunication
         {
             dataType = mode;
             AcHost = new HostName(IpAddress);
-            socket = new DatagramSocket();
-            socket.MessageReceived += Socket_MessageReceived;
+            
         }
 
         ~AcUdpConnection()
@@ -50,9 +49,12 @@ namespace AcUdpCommunication
             if (isConnected) return;
             try
             {
+                socket = new DatagramSocket();
                 // Connect to the server, save the datawriter for later and send initial handshake;
                 await socket.ConnectAsync(AcHost, AC_PORT.ToString());
                 writer = new DataWriter(socket.OutputStream);
+
+                socket.MessageReceived += Socket_MessageReceived;
                 sendHandshake(AcConverter.handshaker.HandshakeOperation.Connect);
 
             }
