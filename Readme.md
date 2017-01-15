@@ -8,9 +8,13 @@ To use it, reference the AcUdpCommunication class library from your app project 
 Create a new AcUdpConnection object with the following parameters:
 - The IP address of the server (the system running assetto corsa)
 - The type of information to receive: lap times for all cars, or telemetry on a single car.
-Register the LapUpdate or CarUpdate event callbacks. 
+
+Register (optionally) the LapUpdate or CarUpdate event callbacks. 
+
 Call the Connect() function on the object.
 
 Now the most recent data can be retrieved from the lapInfo and carInfo structs.
+
+If you have any issues/questions/suggestions/improvements or if you want to buy me a beer, please let me know.
 
 Copyright Reinout Nonhebel, 2017
