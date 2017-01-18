@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace AcUdpCommunication
 {
-    public static class AcConverter
+    internal static class AcConverter
     {
         // Copy structure to new memory, return array (pointer) of raw bytes.
         public static byte[] structToBytes<T>(T str) where T : struct
