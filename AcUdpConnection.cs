@@ -121,7 +121,12 @@ namespace AcUdpCommunication
                         carInfo.bestLapTime = TimeSpan.FromMilliseconds(rtcar.bestLap);
 
                         if (CarUpdate != null)
-                            CarUpdate(this, new AcUpdateEventArgs());
+                        {
+                            AcUpdateEventArgs updateArgs = new AcUpdateEventArgs();
+                            updateArgs.carInfo = this.carInfo;
+
+                            CarUpdate(this, updateArgs);
+                        }
                         break;
                     case ConnectionType.LapTime:
                         // Check if it is the right packet.
@@ -137,7 +142,12 @@ namespace AcUdpCommunication
                         lapInfo.lapTime = TimeSpan.FromMilliseconds(rtlap.time);
 
                         if (LapUpdate != null)
-                            LapUpdate(this, new AcUpdateEventArgs());
+                        {
+                            AcUpdateEventArgs updateArgs = new AcUpdateEventArgs();
+                            updateArgs.lapInfo = this.lapInfo;
+
+                            LapUpdate(this, updateArgs);
+                        }   
                         break;
                     default:
                         break;
@@ -155,7 +165,8 @@ namespace AcUdpCommunication
 
         public class AcUpdateEventArgs : EventArgs
         {
-            // WIP, send last received info as EventArgs
+            public LapInfo lapInfo;
+            public CarInfo carInfo;
         }
     }
 
